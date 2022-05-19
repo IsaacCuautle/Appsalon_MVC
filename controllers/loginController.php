@@ -5,7 +5,7 @@ namespace Controllers;
 use Classes\Email;
 use Model\usuario;
 use MVC\Router;
-use Reflector;
+
 
 class LoginController{
     public static function login(Router $router){
