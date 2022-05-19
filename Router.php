@@ -36,18 +36,11 @@ class Router
         //     echo "Página No Encontrada o Ruta no válida";
         // }
 
-        $currentUrl = ($_SERVER['REQUEST_URI'] === '') ? '/' :  $_SERVER['REQUEST_URI'] ;
-$method = $_SERVER['REQUEST_METHOD'];
-
-//dividimos la URL actual cada vez que exista un '?' eso indica que se están pasando variables por la url
-$splitURL = explode('?', $currentUrl);
-// debuguear($splitURL);
-
-if ($method === 'GET') {
-    $fn = $this->getRoutes[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL sin variables
-} else {
-  $fn = $this->postRoutes[$splitURL[0]] ?? null;
-}
+        if ($_SERVER['PATH_INFO']) {
+            $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+         } else {
+            $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
+         }
     }
 
     public function render($view, $datos = [])
