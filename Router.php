@@ -8,12 +8,12 @@ class Router
     public array $getRoutes = [];
     public array $postRoutes = [];
 
-    public function get($url, $fn)
+    public function get($url, callable $fn)
     {
         $this->getRoutes[$url] = $fn;
     }
 
-    public function post($url, $fn)
+    public function post($url, callable $fn)
     {
         $this->postRoutes[$url] = $fn;
     }
