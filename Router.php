@@ -29,13 +29,12 @@ class Router
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
 
-        if (!$fn) {
-            echo 'Page not found';
-            exit;
+        if ( $fn ) {
+            // Call user fn va a llamar una función cuando no sabemos cual sera
+            call_user_func($fn, $this); // This es para pasar argumentos
+        } else {
+            echo "Página No Encontrada o Ruta no válida";
         }
-        echo call_user_func($fn, $this);
-
-        
     }
 
     public function render($view, $datos = [])
